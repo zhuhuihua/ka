@@ -1,0 +1,65 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+group 'org.dk'
+version '0.0.1'
+apply plugin: 'java'
+archivesBaseName = 'kafka_rest'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'application'
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+version = 'kafka-rest-0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+mainClassName = 'com.dk.kafka.rest.KafkaManager'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+
+	compile ('org.springframework.boot:spring-boot-starter') {
+        exclude module : 'spring-boot-starter-logging'
+    }
+    compile ('org.springframework.boot:spring-boot-starter-web') {
+        exclude module : 'spring-boot-starter-logging'
+    }
+
+	compile group: 'org.apache.kafka', name: 'kafka_2.10', version: '0.10.2.1'
+	compile group: 'org.apache.kafka', name: 'kafka-clients', version: '0.10.2.1'
+	compile group: 'org.apache.kafka', name: 'connect-api', version: '0.10.2.1'
+	compile group: 'org.apache.kafka', name: 'kafka-streams', version: '0.10.2.1'
+	
+	compile group: 'org.apache.hadoop', name: 'hadoop-common', version: '2.6.0'
+	compile group: 'org.apache.hadoop', name: 'hadoop-client', version: '2.6.0'
+	compile group: 'org.apache.hadoop', name: 'hadoop-hdfs', version: '2.6.0'
+	compile group: 'org.apache.hbase', name: 'hbase', version: '1.1.2'
+	compile group: 'org.apache.hbase', name: 'hbase-client', version: '1.1.2'
+	compile group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.3'
+	
+	
+	compile('org.springframework.boot:spring-boot-starter')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.4.RELEASE'
+	compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '1.5.4.RELEASE'
+	
+    compile 'org.apache.logging.log4j:log4j-core:2.4.1'
+	compile 'org.apache.logging.log4j:log4j-api:2.4.1'
+	
+    testCompile 'junit:junit:4.12'
+}

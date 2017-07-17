@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration status="INFO">
+
+    <appenders>
+		
+		<RollingFile name="logFile" fileName="dk-kafka.log"  filePattern="log/$${date:yyyy-MM}/cralwer-%d{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout pattern="%d{yyyy-MM-dd '@' HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n" />
+			<SizeBasedTriggeringPolicy size="10MB"/>
+		</RollingFile>
+        
+        <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT"
+                onMismatch="DENY" />
+            <PatternLayout charset="UTF-8"
+                pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%class{36}:%L] %M - %msg%xEx%n" />
+        </Console>
+		
+    </appenders>
+
+    <loggers>
+    
+    	<root level="INFO">
+            <appender-ref ref="Console"/>
+			<appender-ref ref="logFile" />
+        </root>
+		
+    </loggers>
+    
+</configuration>
