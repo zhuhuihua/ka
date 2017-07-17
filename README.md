@@ -1,4 +1,4 @@
-# ka
+# kafka-study
 kafka-study
 kafka restful
 需要移除log4j-over-slf4j,logback*.jar, servlet2.5.jar三个包，由于kafka和spring boot 
